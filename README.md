@@ -1,5 +1,4 @@
 #### Things missing:
-- Descriptive variable names
 - Codebook (read this: https://class.coursera.org/getdata-004/forum/thread?thread_id=64)
 
 Getting and cleaning data
