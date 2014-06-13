@@ -1,5 +1,4 @@
 library(data.table)
-library(sqldf)
 library(plyr)
 
 # Global parameters

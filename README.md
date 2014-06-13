@@ -1,115 +1,28 @@
-#### Things missing:
-- Codebook (read this: https://class.coursera.org/getdata-004/forum/thread?thread_id=64)
-
 Getting and cleaning data
-=====
+====
 ### Course Project
 
+#### 1. Introduction
 
-The original dataset consists of separate files containing partial information on the data. Our aim is to perform a series of operations that will summarize and consolidate the required information on a single file. 
+This course project consists of applying the correct transformations to a given dataset in order to extract and summarize the required information. Each component of the project is detailed bellow.
 
-The steps we will take described in the sections below.
+The original dataset is called *Human Activity Recognition Using Smartphones* and the tidy dataset produced at the end of the procedures is called *HARUS Averaged*.
 
-#### 1. Merge the test and train data
+The actual procedures and transformations are detailed separetely.
 
-This step simply consists of appending the _train_ to the _test_ data, i.e. the data of each file in the _train_ folder will be appended in the corresponding _test_ file.
+#### 2. Components
 
-#### 2. Combine information to create a single data frame
+##### 2.1 Scripts
 
-The following files
+The script used to perform the transformations described in the code book is `run_analysis.R`. It depends on two pacakges:
 
-- X_test.txt
-- y_test.txt
-- subject_test.txt
+- `data.table`: used to manipulate the data as data.tables instead of pure data.frames
+- `plyr`: used to perform a *group by* operation on the dataset, using the function `ddply`
 
-could actually produce the following data frame
+##### 2.2 Code Book
 
-```
-(561 measurements of features) | subject | activity
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - >
-|                              |    1    | WALKING
-|                              |    1    | WALKING_UPSTAIRS
-|                              |    1    | WALKING_DOWNSTAIRS
-|
-|
-V
-(per subject and activity)
-```
+The file `CodeBook.md` contains all the information on the transformations applied to the original dataset in order to obtain the tidy dataset. It also explains succintly the meaning of the columns.
 
-In this step, the numbers representing the activity will be substituted by a descriptive name.
+##### 2.3 Dataset
 
-#### 3. Subsetting the data
-
-Of the 561 variables, we are only interested in those representing **means** and **standard deviations**, which correspond to the following features:
-
-| Index |      Name        |
-|:-----:|------------------|
-| 1 | tBodyAcc-mean()-X| 
-| 2 | tBodyAcc-mean()-Y| 
-| 3 | tBodyAcc-mean()-Z| 
-| 4 | tBodyAcc-std()-X | 
-| 5 | tBodyAcc-std()-Y | 
-| 6 | tBodyAcc-std()-Z | 
-| 41 | tGravityAcc-mean()-X | 
-| 42 | tGravityAcc-mean()-Y | 
-| 43 | tGravityAcc-mean()-Z | 
-| 44 | tGravityAcc-std()-X | 
-| 45 | tGravityAcc-std()-Y | 
-| 46 | tGravityAcc-std()-Z | 
-| 81 | tBodyAccJerk-mean()-X | 
-| 82 | tBodyAccJerk-mean()-Y | 
-| 83 | tBodyAccJerk-mean()-Z | 
-| 84 | tBodyAccJerk-std()-X | 
-| 85 | tBodyAccJerk-std()-Y | 
-| 86 | tBodyAccJerk-std()-Z |
-| 121 | tBodyGyro-mean()-X | 
-| 122 | tBodyGyro-mean()-Y | 
-| 123 | tBodyGyro-mean()-Z | 
-| 124 | tBodyGyro-std()-X | 
-| 125 | tBodyGyro-std()-Y | 
-| 126 | tBodyGyro-std()-Z | 
-| 161 | tBodyGyroJerk-mean()-X | 
-| 162 | tBodyGyroJerk-mean()-Y | 
-| 163 | tBodyGyroJerk-mean()-Z | 
-| 164 | tBodyGyroJerk-std()-X |
-| 165 | tBodyGyroJerk-std()-Y |
-| 166 | tBodyGyroJerk-std()-Z |
-| 201 | tBodyAccMag-mean() | 
-| 202 | tBodyAccMag-std() | 
-| 214 | tGravityAccMag-mean() | 
-| 215 | tGravityAccMag-std() | 
-| 227 | tBodyAccJerkMag-mean() |
-| 228 | tBodyAccJerkMag-std() |
-| 240 | tBodyGyroMag-mean() |
-| 241 | tBodyGyroMag-std() |
-| 253 | tBodyGyroJerkMag-mean() |
-| 254 | tBodyGyroJerkMag-std() |
-| 266 | fBodyAcc-mean()-X |
-| 267 | fBodyAcc-mean()-Y |
-| 268 | fBodyAcc-mean()-Z |
-| 269 | fBodyAcc-std()-X |
-| 270 | fBodyAcc-std()-Y |
-| 271 | fBodyAcc-std()-Z |
-| 345 | fBodyAccJerk-mean()-X |
-| 346 | fBodyAccJerk-mean()-Y |
-| 347 | fBodyAccJerk-mean()-Z |
-| 348 | fBodyAccJerk-std()-X |
-| 349 | fBodyAccJerk-std()-Y |
-| 350 | fBodyAccJerk-std()-Z |
-| 424 | fBodyGyro-mean()-X |
-| 425 | fBodyGyro-mean()-Y |
-| 426 | fBodyGyro-mean()-Z |
-| 427 | fBodyGyro-std()-X |
-| 428 | fBodyGyro-std()-Y |
-| 429 | fBodyGyro-std()-Z |
-| 503 | fBodyAccMag-mean() |
-| 504 | fBodyAccMag-std() |
-| 516 | fBodyBodyAccJerkMag-mean() |
-| 517 | fBodyBodyAccJerkMag-std() |
-| 529 | fBodyBodyGyroMag-mean() |
-| 530 | fBodyBodyGyroMag-std() |
-| 542 | fBodyBodyGyroJerkMag-mean() |
-| 543 | fBodyBodyGyroJerkMag-std() |
-
-
-
+The file `averaged.txt` contains the tidy dataset.
